@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.venv/
+venv/
+backend/.venv/
+backend/app/**/__pycache__/
+
+# Node / frontend
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Env and secrets
+.env
+*.env
+!backend/.env.example
+
+# Logs and runtime artifacts
+*.log
+backend/logs/
+.deepeval/
+backend/.deepeval/
+
+# Local data and databases
+data/
+backend/data/
+*.db
+*.sqlite
+*.sqlite3
+
+# Temp/test cache folders
+.pytest_cache/
+pytest-cache-files-*/

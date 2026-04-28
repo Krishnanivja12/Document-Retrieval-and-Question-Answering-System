@@ -1,0 +1,432 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Scrollbar */
+@layer utilities {
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    @apply bg-gray-100 rounded-lg;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-lg border-2 border-gray-100;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400;
+  }
+}
+
+/* Base Styles */
+@layer base {
+  * {
+    @apply antialiased;
+  }
+  
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply bg-gray-50 text-gray-900 min-h-screen;
+  }
+  
+  #root {
+    @apply min-h-screen flex flex-col;
+  }
+}
+
+/* Component Styles */
+@layer components {
+  /* App Shell - Full Screen A4 Optimized */
+  .app-shell {
+    @apply min-h-screen flex flex-col bg-white;
+    @apply max-w-full mx-auto;
+    @apply shadow-2xl;
+  }
+  
+  /* Print Optimization for A4 */
+  @media print {
+    .app-shell {
+      @apply max-w-a4 min-h-a4;
+    }
+  }
+  
+  /* Topbar */
+  .topbar {
+    @apply sticky top-0 z-50;
+    @apply flex flex-col lg:flex-row justify-between items-start lg:items-center;
+    @apply gap-4 lg:gap-8;
+    @apply px-4 sm:px-6 lg:px-8 py-4 lg:py-6;
+    @apply bg-white border-b-2 border-gray-200;
+    @apply backdrop-blur-lg bg-opacity-95;
+    @apply animate-slide-down;
+  }
+  
+  .topbar-brand {
+    @apply flex-1 w-full lg:w-auto;
+  }
+  
+  .eyebrow {
+    @apply uppercase tracking-widest text-xs font-bold text-gray-500 mb-2;
+  }
+  
+  .topbar h1 {
+    @apply text-2xl sm:text-3xl lg:text-4xl font-extrabold;
+    @apply bg-gradient-to-r from-black to-gray-700 bg-clip-text text-transparent;
+  }
+  
+  /* Navigation Pills */
+  .nav-pills {
+    @apply flex flex-col sm:flex-row gap-2 w-full lg:w-auto;
+  }
+  
+  .pill {
+    @apply relative inline-flex items-center justify-center;
+    @apply px-4 sm:px-6 py-2.5 sm:py-3;
+    @apply text-sm sm:text-base font-semibold;
+    @apply text-gray-600 bg-white;
+    @apply border-2 border-gray-200 rounded-lg;
+    @apply transition-all duration-200 ease-out;
+    @apply hover:border-black hover:text-black hover:-translate-y-0.5 hover:shadow-lg;
+    @apply focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2;
+    @apply active:scale-95;
+  }
+  
+  .pill.active {
+    @apply bg-black text-white border-black shadow-xl;
+  }
+  
+  /* Main Content Area - Full Screen */
+  .page {
+    @apply flex-1 w-full;
+    @apply px-4 sm:px-6 lg:px-8 py-6 lg:py-8;
+    @apply animate-fade-in;
+    @apply overflow-y-auto scrollbar-thin;
+  }
+  
+  /* Page Container - Responsive Width */
+  .page-container {
+    @apply w-full max-w-7xl mx-auto;
+    @apply space-y-6 lg:space-y-8;
+  }
+  
+  /* Cards */
+  .card {
+    @apply bg-white border-2 border-gray-200 rounded-xl;
+    @apply p-4 sm:p-6 lg:p-8;
+    @apply shadow-md hover:shadow-xl;
+    @apply transition-all duration-300;
+    @apply hover:border-gray-300 hover:-translate-y-1;
+  }
+  
+  .card-header {
+    @apply mb-4 sm:mb-6;
+  }
+  
+  .card-title {
+    @apply text-xl sm:text-2xl font-bold text-black mb-2;
+  }
+  
+  .card-description {
+    @apply text-sm sm:text-base text-gray-600;
+  }
+  
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2;
+    @apply px-4 sm:px-6 py-2.5 sm:py-3;
+    @apply text-sm sm:text-base font-semibold;
+    @apply rounded-lg;
+    @apply transition-all duration-200;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none;
+    @apply active:scale-95;
+  }
+  
+  .btn-primary {
+    @apply bg-black text-white;
+    @apply hover:bg-gray-800 hover:shadow-lg hover:-translate-y-0.5;
+    @apply focus:ring-black;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-black border-2 border-gray-300;
+    @apply hover:border-black hover:shadow-md;
+    @apply focus:ring-gray-400;
+  }
+  
+  .btn-danger {
+    @apply bg-black text-white;
+    @apply hover:bg-gray-800 hover:shadow-lg hover:-translate-y-0.5;
+    @apply focus:ring-gray-700;
+  }
+  
+  .btn-ghost {
+    @apply bg-transparent text-gray-700 border-2 border-gray-200;
+    @apply hover:bg-gray-50 hover:border-gray-300;
+    @apply focus:ring-gray-300;
+  }
+  
+  /* Inputs */
+  .input {
+    @apply w-full px-4 py-2.5 sm:py-3;
+    @apply text-sm sm:text-base;
+    @apply bg-white border-2 border-gray-300 rounded-lg;
+    @apply transition-all duration-200;
+    @apply focus:outline-none focus:ring-2 focus:ring-black focus:border-black;
+    @apply disabled:bg-gray-100 disabled:cursor-not-allowed;
+    @apply placeholder:text-gray-400;
+  }
+  
+  .textarea {
+    @apply input resize-none;
+    @apply min-h-[100px] sm:min-h-[120px];
+  }
+  
+  /* Chat Components */
+  .chat-window {
+    @apply h-[400px] sm:h-[500px] lg:h-[600px];
+    @apply overflow-y-auto scrollbar-thin;
+    @apply p-4 sm:p-6;
+    @apply bg-gray-50 rounded-xl border-2 border-gray-200;
+    @apply space-y-4;
+  }
+  
+  .message {
+    @apply flex gap-3 animate-slide-in-right;
+  }
+  
+  .message.user {
+    @apply justify-end;
+  }
+  
+  .message-bubble {
+    @apply max-w-[85%] sm:max-w-[75%] lg:max-w-[70%];
+    @apply px-4 py-3 rounded-xl;
+    @apply text-sm sm:text-base;
+    @apply break-words;
+  }
+  
+  .message.user .message-bubble {
+    @apply bg-black text-white rounded-br-sm;
+  }
+  
+  .message.assistant .message-bubble {
+    @apply bg-white text-gray-900 border-2 border-gray-200 rounded-bl-sm;
+  }
+  
+  /* Metrics Cards */
+  .metrics-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6;
+  }
+  
+  .metric-card {
+    @apply p-4 sm:p-6 rounded-xl border-2;
+    @apply transition-all duration-300;
+    @apply hover:shadow-lg hover:-translate-y-1;
+  }
+  
+  .metric-card.excellent {
+    @apply bg-white border-black text-black;
+  }
+  
+  .metric-card.good {
+    @apply bg-gray-100 border-gray-400 text-gray-900;
+  }
+  
+  .metric-card.fair {
+    @apply bg-gray-100 border-gray-300 text-gray-800;
+  }
+  
+  .metric-card.poor {
+    @apply bg-gray-100 border-gray-300 text-gray-700;
+  }
+  
+  /* Progress Bars */
+  .progress-bar {
+    @apply w-full h-3 bg-gray-200 rounded-full overflow-hidden;
+  }
+  
+  .progress-fill {
+    @apply h-full transition-all duration-500 ease-out;
+  }
+  
+  .progress-fill.excellent {
+    @apply bg-black;
+  }
+  
+  .progress-fill.good {
+    @apply bg-gray-700;
+  }
+  
+  .progress-fill.fair {
+    @apply bg-gray-600;
+  }
+  
+  .progress-fill.poor {
+    @apply bg-gray-500;
+  }
+  
+  /* Loading States */
+  .spinner {
+    @apply inline-block w-5 h-5 border-2 border-current border-t-transparent rounded-full;
+    @apply animate-spin;
+  }
+  
+  .spinner-lg {
+    @apply w-8 h-8 border-4;
+  }
+  
+  /* Toast Notifications */
+  .toast {
+    @apply fixed bottom-4 right-4 z-50;
+    @apply max-w-sm w-full;
+    @apply p-4 rounded-lg shadow-2xl;
+    @apply border-2;
+    @apply animate-slide-in-right;
+  }
+  
+  .toast-success {
+    @apply bg-gray-100 border-gray-300 text-gray-900;
+  }
+  
+  .toast-error {
+    @apply bg-gray-100 border-gray-300 text-gray-900;
+  }
+  
+  .toast-warning {
+    @apply bg-gray-100 border-gray-300 text-gray-900;
+  }
+  
+  .toast-info {
+    @apply bg-gray-100 border-gray-300 text-gray-900;
+  }
+  
+  /* File Upload */
+  .file-upload-zone {
+    @apply relative;
+    @apply flex flex-col items-center justify-center;
+    @apply p-8 sm:p-12 lg:p-16;
+    @apply border-4 border-dashed border-gray-300 rounded-xl;
+    @apply bg-gray-50;
+    @apply transition-all duration-300;
+    @apply hover:border-black hover:bg-gray-100;
+    @apply cursor-pointer;
+  }
+  
+  .file-upload-zone.active {
+    @apply border-black bg-gray-100 scale-105;
+  }
+  
+  /* Session Display */
+  .session-display {
+    @apply flex items-center justify-between;
+    @apply p-4 sm:p-6;
+    @apply bg-gray-50 border-2 border-gray-200 rounded-xl;
+  }
+  
+  /* Document List */
+  .document-item {
+    @apply flex items-center gap-3 sm:gap-4;
+    @apply p-3 sm:p-4;
+    @apply bg-gray-50 border-2 border-gray-200 rounded-lg;
+    @apply transition-all duration-200;
+    @apply hover:border-gray-300 hover:shadow-md;
+  }
+  
+  /* Status Badges */
+  .badge {
+    @apply inline-flex items-center gap-1.5;
+    @apply px-3 py-1.5;
+    @apply text-xs sm:text-sm font-semibold;
+    @apply rounded-full;
+  }
+  
+  .badge-success {
+    @apply bg-gray-100 text-gray-800 border border-gray-300;
+  }
+  
+  .badge-error {
+    @apply bg-gray-100 text-gray-800 border border-gray-300;
+  }
+  
+  .badge-warning {
+    @apply bg-gray-100 text-gray-800 border border-gray-300;
+  }
+  
+  .badge-info {
+    @apply bg-gray-100 text-gray-800 border border-gray-300;
+  }
+}
+
+/* Responsive Typography */
+@layer utilities {
+  .text-responsive-xs {
+    @apply text-xs sm:text-sm;
+  }
+  
+  .text-responsive-sm {
+    @apply text-sm sm:text-base;
+  }
+  
+  .text-responsive-base {
+    @apply text-base sm:text-lg;
+  }
+  
+  .text-responsive-lg {
+    @apply text-lg sm:text-xl lg:text-2xl;
+  }
+  
+  .text-responsive-xl {
+    @apply text-xl sm:text-2xl lg:text-3xl;
+  }
+  
+  .text-responsive-2xl {
+    @apply text-2xl sm:text-3xl lg:text-4xl;
+  }
+}
+
+/* Print Styles */
+@media print {
+  @page {
+    size: A4;
+    margin: 20mm;
+  }
+  
+  .topbar,
+  .nav-pills,
+  .btn,
+  .no-print {
+    @apply hidden;
+  }
+  
+  .page {
+    @apply p-0;
+  }
+  
+  .card {
+    @apply shadow-none border-gray-400;
+    page-break-inside: avoid;
+  }
+}
+
+/* Full Screen Utilities */
+@layer utilities {
+  .full-screen {
+    @apply min-h-screen w-full;
+  }
+  
+  .full-width {
+    @apply w-full max-w-full;
+  }
+  
+  .container-fluid {
+    @apply w-full px-4 sm:px-6 lg:px-8;
+  }
+}

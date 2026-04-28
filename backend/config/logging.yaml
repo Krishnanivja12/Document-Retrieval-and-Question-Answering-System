@@ -1,0 +1,13 @@
+console:
+  level: "DEBUG"
+  colorize: true
+  format: "{time:YYYY-MM-DD HH:mm:ss} | {level: <8} | {name}:{function}:{line} - {message}"
+
+file:
+  enabled: true
+  path: "logs/app.log"
+  level: "INFO"
+  rotation: "500 MB"
+  retention: "10 days"
+  json: false
+  format: "{time} | {level} | {message}"
